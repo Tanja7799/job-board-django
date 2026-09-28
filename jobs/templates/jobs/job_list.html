@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список вакансій Python</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+        h1 { color: #333; }
+        .job-card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 5px; border-left: 5px solid #306998; }
+        .job-title { margin: 0 0 10px 0; color: #306998; }
+        .job-info { color: #666; font-size: 14px; }
+        a { color: #ffffff; background: #306998; padding: 5px 10px; text-decoration: none; border-radius: 3px; display: inline-block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Вакансії Python (живий парсинг)</h1>
+
+    {% if jobs %}
+        {% for job in jobs %}
+            <div class="job-card">
+                <h2 class="job-title">{{ job.title }}</h2>
+                <p class="job-info"><strong>Компанія:</strong> {{ job.company }}</p>
+                <p class="job-info"><strong>Локація:</strong> {{ job.location }}</p>
+                {% if job.link %}
+                    <a href="{{ job.link }}" target="_blank">Детальніше</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Вакансій не знайдено або виникла помилка під час завантаження.</p>
+    {% endif %}
+</body>
+</html>
