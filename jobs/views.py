@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .services import fetch_jobs
+from .services import fetch_and_save_jobs
+from .models import Job
 
 def job_list_view(request):
-    jobs = fetch_jobs()
+    fetch_and_save_jobs()  #запускається парсер для оновлення бази новими вакансіями
+    jobs = Job.objects.all()
 
     context = {
         'jobs': jobs
